@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"regexp"
+	"sort"
 	"strings"
 	"sync"
 
@@ -101,9 +102,16 @@ func main() {
 	crawlDomain(os.Args[1])
 
 	fmt.Printf("Found %d pages from %s\n", len(sitemap), os.Args[1])
-	for url, links := range sitemap {
+
+	// Map isn't sorted, so get keys and sort them for ordered output
+	var sortedUrls []string
+	for url := range sitemap {
+		sortedUrls = append(sortedUrls, url)
+	}
+	sort.Strings(sortedUrls)
+	for _, url := range sortedUrls {
 		fmt.Println(url)
-		for _, link := range links {
+		for _, link := range sitemap[url] {
 			fmt.Printf("\t%s\n", link)
 		}
 	}
