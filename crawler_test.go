@@ -38,7 +38,7 @@ var tester = testFetcher{
 }
 
 func TestCrawler(t *testing.T) {
-	// Replace default tester in main pkg with oru test implementation
+	// Replace default tester in main pkg with our test implementation
 	fetcher = tester
 	crawlDomain("http://golang.org")
 
