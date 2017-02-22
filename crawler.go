@@ -175,7 +175,6 @@ func getLinks(url string) []string {
 
 // isImageLink determines whether the supplied URL is for an image (.png, .jpg,
 // .gif etc). Returns true if it's an image, false otherwise
-// TODO: Rewrite with regex
 func isImageLink(url string) bool {
 	exp := regexp.MustCompile(`([^\s]+(\.(?i)(jpg|png|gif|bmp|tiff))$)`)
 	if exp.MatchString(url) {
